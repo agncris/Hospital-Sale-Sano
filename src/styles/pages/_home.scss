@@ -1,0 +1,19 @@
+.servicio {
+    display: flex;
+    width: 30%;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+
+
+    &__img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   connect-src 'self' ws: wss:;
+                   img-src 'self' https: data:; 
+                   style-src 'self' 'unsafe-inline' https:; 
+                   script-src 'self' 'unsafe-inline' https://maps.googleapis.com; 
+                   frame-src 'self' https://www.google.com;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Hospital Sale Sano - Sistema de gestión hospitalaria" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#2c3e50" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Sale Sano" />
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/icons/icon-128x128.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png" />
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileColor" content="#2c3e50" />
+    <meta name="msapplication-TileImage" content="/icons/icon-144x144.png" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="/src/styles/main.css" type="text/css">
+    
+    <!-- Fuente Poppins de Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    
+    <title>Hospital Sale Sano</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Script para forzar la recarga de estilos -->
+    <script>
+      // Forzar recarga de estilos
+      const forceStyleReload = () => {
+        const links = document.getElementsByTagName('link');
+        for (let i = 0; i < links.length; i++) {
+          const link = links[i];
+          if (link.rel === 'stylesheet') {
+            link.href = link.href.replace(/\?.*|$/, '?' + new Date().getTime());
+          }
+        }
+      }
+      
+      // Ejecutar después de cargar la página
+      window.addEventListener('load', forceStyleReload);
+    </script>
+  </body>
+</html>

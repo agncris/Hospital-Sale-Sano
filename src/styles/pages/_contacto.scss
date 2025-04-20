@@ -1,0 +1,33 @@
+.contact-form {
+    display:flex;
+    flex-direction:column;
+    width: 50%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    &__label {
+        color: $text-color;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    &__input, &__textarea {
+        padding: 10px;
+        border: 1px solid $secondary-color;
+        border-radius: $border-radius;
+        margin-bottom: 15px;
+        font-size: 1rem;
+    }
+}
+
+.map-container {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+
+    &__iframe {
+        width: 50%;
+        height: 70px;
+        border:0;
+    }
+}

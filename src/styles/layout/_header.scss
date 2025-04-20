@@ -1,0 +1,79 @@
+@import '../partials/breakpoints';
+
+.header {
+    background-color: #e7e7e7;
+    color: rgb(53, 33, 33);
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+   
+    &__nav-bar {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__nav-list {
+        list-style: none; /*para quitarle los puntos a la lista */
+        display: flex;
+    }
+
+    &__nav-item {
+        margin-right: 20px;
+    }
+
+    &__nav-link {
+        color: rgb(41, 41, 41);
+        font-weight: bold;
+    }
+
+}
+
+@media (max-width: $breakpoint-mobile) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+
+        &__nav-list {
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        &__nav-item {
+            margin-bottom: 10px;
+            margin-right: 0;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-tablet) and (max-width: $breakpoint-desktop) {
+    .header {
+        padding: 15px;
+    
+        &__nav-list {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__nav-item {
+            margin-right: 20px;
+        }
+    }
+}
+
+@media (min-width: $breakpoint-desktop) {
+    .header {
+        padding: 20px 30px;
+    
+        &__nav-list {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        &__nav-item {
+            margin-right: 20px;
+        }
+    }
+}
+
