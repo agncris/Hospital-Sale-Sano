@@ -35,4 +35,8 @@
     "vite": "^6.0.5",
     "vite-plugin-pwa": "^0.21.2"
   }
+  "scripts": {
+  "prebuild": "node create-dirs.js",
+  "build": "your-build-command"
+}
 }
