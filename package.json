@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prebuild": "create-dirs.bat"
+    "prebuild": "node create-dirs.js"
   },
   "dependencies": {
     "@types/dompurify": "^3.0.5",
@@ -35,8 +35,4 @@
     "vite": "^6.0.5",
     "vite-plugin-pwa": "^0.21.2"
   }
-  "scripts": {
-  "prebuild": "node create-dirs.js",
-  "build": "your-build-command"
-}
 }
