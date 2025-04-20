@@ -11,7 +11,8 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [localStorageStatus, setLocalStorageStatus] = useState(null);
+  // Estado para almacenar las credenciales de prueba
+  const [mockCredentials, setMockCredentials] = useState(null);
 
   // Si venimos del registro, usar el email registrado
   useEffect(() => {
@@ -20,20 +21,27 @@ const Login = () => {
       console.log('Email obtenido de registro:', location.state.registeredEmail);
     }
     
-    // Verificar estado de localStorage
+    // Verificar estado de localStorage y extraer credenciales
     try {
-      const mockUsers = localStorage.getItem('mockUsers');
-      if (mockUsers) {
-        const parsed = JSON.parse(mockUsers);
-        setLocalStorageStatus(`Usuarios en localStorage: ${Object.keys(parsed).join(', ')}`);
-        console.log('Usuarios disponibles:', Object.keys(parsed));
+      const mockUsersRaw = localStorage.getItem('mockUsers');
+      if (mockUsersRaw) {
+        const parsedUsers = JSON.parse(mockUsersRaw);
+        // Transformar los datos para mostrar email y contraseña
+        const credentialsArray = Object.entries(parsedUsers).map(([email, userData]) => ({
+          email,
+          // Asumiendo que la contraseña se guarda directamente en el objeto del usuario
+          // ¡Asegúrate de que esto coincida con cómo guardas los datos en register! 
+          // Si la contraseña está hasheada o encriptada, no podrás mostrarla directamente.
+          password: userData.password // Cambia esto si la estructura es diferente
+        }));
+        setMockCredentials(credentialsArray);
+        console.log('Credenciales de prueba cargadas:', credentialsArray);
       } else {
-        setLocalStorageStatus('No hay usuarios guardados en localStorage');
-        console.log('No hay usuarios en localStorage');
+        console.log('No hay usuarios guardados en localStorage');
       }
     } catch (err) {
-      console.error('Error verificando localStorage:', err);
-      setLocalStorageStatus('Error verificando usuarios en localStorage');
+      console.error('Error verificando/parseando localStorage:', err);
+      setMockCredentials([]); // Indicar que hubo un error o no hay datos
     }
   }, [location]);
 
@@ -73,11 +81,29 @@ const Login = () => {
     <div className="container">
       <h2>Iniciar Sesión</h2>
       {error && <div className="alert alert-danger">{error}</div>}
-      {localStorageStatus && (
-        <div className="alert alert-info">
-          <small>{localStorageStatus}</small>
+      
+      {/* Sección para mostrar credenciales de prueba */}
+      {mockCredentials && mockCredentials.length > 0 && (
+        <div className="alert alert-warning mt-3">
+          <h5 className="alert-heading">Credenciales de Prueba</h5>
+          <small>
+            <ul className="list-unstyled mb-0">
+              {mockCredentials.map((cred, index) => (
+                <li key={index}>
+                  <strong>Email:</strong> {cred.email} | <strong>Password:</strong> {cred.password}
+                </li>
+              ))}
+            </ul>
+          </small>
         </div>
       )}
+      {mockCredentials === null && (
+          <div className="alert alert-info mt-3"><small>Cargando credenciales...</small></div>
+      )}
+      {mockCredentials && mockCredentials.length === 0 && (
+          <div className="alert alert-secondary mt-3"><small>No se encontraron credenciales de prueba en localStorage.</small></div>
+      )}
+
       <form onSubmit={handleSubmit}>
         <FormInput
           id="email"
